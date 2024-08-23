@@ -1,0 +1,20 @@
+.otp-inputs-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  direction: ltr;
+}
+.otp-input {
+  width: 3.0625rem;
+  height: 3rem;
+  background-color: var(--secondary-300);
+  border-radius: 0.38rem;
+  display: flex;
+  justify-content: center;
+  align-items: centers;
+  text-align: center;
+  &:focus {
+    border: 1px solid var(--secondary-600);
+  }
+}

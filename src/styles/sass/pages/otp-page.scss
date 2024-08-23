@@ -1,0 +1,9 @@
+.container {
+  width: 100%;
+  height: 100vh;
+  background: url(@/assets/images/bg-image.png) lightgray 0px -100px / 100% 118.519% no-repeat;
+  overflow-y: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

@@ -1,0 +1,19 @@
+$color-white: #fff;
+$secondary-50: #f7f8fa;
+$secondary-100: #d0c9c1;
+$secondary-200: #8999b9;
+$secondary-300: #f9fafb;
+$secondary-400: #e2edff;
+$secondary-500: #c3c5c9;
+$secondary-600: #00aace;
+
+:root {
+  --color-white: #{$color-white};
+  --secondary-50: #{$secondary-50};
+  --secondary-100: #{$secondary-100};
+  --secondary-200: #{$secondary-200};
+  --secondary-300: #{$secondary-300};
+  --secondary-400: #{$secondary-400};
+  --secondary-500: #{$secondary-500};
+  --secondary-600: #{$secondary-600};
+}

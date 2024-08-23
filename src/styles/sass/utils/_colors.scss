@@ -1,0 +1,48 @@
+$colors: (
+  'primary-50': #eceef6,
+  'primary-100': #c4c9e2,
+  'primary-200': #a8afd3,
+  'primary-300': #808bbf,
+  'primary-400': #6775b3,
+  'primary-500': #4152a0,
+  'primary-600': #3b4b92,
+  'primary-700': #2e3a72,
+  'primary-800': #242d58,
+  'primary-900': #1b2243,
+  'black-50 ': #ececee,
+  'black-100': #c3c5c9,
+  'black-200': #a5a9af,
+  'black-300': #7c818a,
+  'black-400': #636974,
+  'black-500': #3c4351,
+  'black-600': #373d4a,
+  'black-700': #2b303a,
+  'black-800': #21252d,
+  'black-900': #191c22,
+  'fail-50 ': #fdedea,
+  'fail-100': #f9c6bd,
+  'fail-200': #f6ab9d,
+  'fail-300': #f28471,
+  'fail-400': #ef6d55,
+  'fail-500': #eb482b,
+  'fail-600': #d64227,
+  'fail-700': #a7331f,
+  'fail-800': #812818,
+  'fail-900': #631e12,
+  'success-50 ': #e6f9f2,
+  'success-100': #b0ebd6,
+  'success-200': #8ae2c2,
+  'success-300': #54d4a6,
+  'success-400': #33cc95,
+  'success-500': #00bf7a,
+  'success-600': #00ae6f,
+  'success-700': #008857,
+  'success-800': #006943,
+  'success-900': #005033
+);
+
+:root {
+  @each $name, $color in $colors {
+    --#{$name}: #{$color};
+  }
+}
