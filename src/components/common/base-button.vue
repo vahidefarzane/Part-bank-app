@@ -32,7 +32,6 @@ const handleClick = (event) => {
     :disabled="disabled || loading"
   >
     <slot name="pre-icon" />
-
     <span v-if="!submitting && !loading">
       <slot />
     </span>
@@ -42,7 +41,6 @@ const handleClick = (event) => {
     <span v-if="loading" class="btn-content">
       <slot name="loading" />
     </span>
-
     <slot name="post-icon" />
   </button>
 </template>
@@ -64,7 +62,6 @@ const handleClick = (event) => {
 .is-loading {
   cursor: wait;
 }
-
 .is-disabled {
   cursor: not-allowed;
   opacity: 0.2;
