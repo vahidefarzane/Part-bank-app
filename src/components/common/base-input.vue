@@ -60,26 +60,22 @@ const handleInput = (event) => {
 .input-container {
   display: flex;
   flex-direction: column;
-  margin-bottom: 1rem;
+  margin-bottom: 2rem;
 }
-
 .input-label {
   margin-bottom: 0.5rem;
   font-weight: bold;
 }
-
 .input-wrapper {
   display: flex;
   align-items: center;
-  border: 1px solid #ccc;
   border-radius: 4px;
   padding: 0.5rem;
+  background-color: #f9fafb;
 }
-
 .input-field {
-  border: none;
-  outline: none;
   flex: 1;
   padding: 0.5rem;
+  background-color: #f9fafb;
 }
 </style>

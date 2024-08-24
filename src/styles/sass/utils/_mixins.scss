@@ -1,3 +1,11 @@
+@mixin flex-box($dir: row, $justify-content: normal, $align-item: normal, $flex-gap: 0) {
+  display: flex;
+  flex-direction: $dir;
+  justify-content: $justify-content;
+  align-items: $align-item;
+  gap: $flex-gap;
+}
+
 @mixin font-style($size: 16px, $weight: 400) {
   font-size: $size;
   font-weight: $weight;

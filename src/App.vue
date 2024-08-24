@@ -1,10 +1,10 @@
 <script setup>
-import otpPage from './pages/otp-page.vue'
+import LoginPage from './pages/login-page.vue';
 </script>
 
 <template>
-  <div class="app">
-    <otpPage />
+  <div >
+    <LoginPage/>
   </div>
 </template>
 
