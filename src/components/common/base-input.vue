@@ -21,9 +21,14 @@ const props = defineProps({
   disabled: {
     type: Boolean,
     default: false
+  },
+  labelStyle: {
+    type: String
+  },
+  inputStyle: {
+    type: String
   }
 })
-
 const emit = defineEmits(['update:modelValue'])
 
 const inputId = ref(`input-${Math.random().toString(36).substr(2, 9)}`)
@@ -39,8 +44,8 @@ const handleInput = (event) => {
 
 <template>
   <div class="input-container">
-    <label v-if="label" :for="inputId" class="input-label">{{ label }}</label>
-    <div class="input-wrapper">
+    <label v-if="label" :for="inputId" :class="labelStyle" class="input-label">{{ label }}</label>
+    <div class="input-wrapper" :class="inputStyle">
       <slot name="prefix" />
       <input
         :id="inputId"
@@ -56,26 +61,20 @@ const handleInput = (event) => {
   </div>
 </template>
 
-<style scoped>
+<style lang="scss" scoped>
 .input-container {
-  display: flex;
-  flex-direction: column;
+  @include flex-box(column, center, flex-start, 0.25rem);
   margin-bottom: 2rem;
 }
 .input-label {
-  margin-bottom: 0.5rem;
-  font-weight: bold;
+  padding: 0 0.5rem;
 }
 .input-wrapper {
-  display: flex;
-  align-items: center;
-  border-radius: 4px;
-  padding: 0.5rem;
-  background-color: #f9fafb;
+  @include flex-box(row, space-between, center);
+  width: 100%;
+  padding: 0 0.5rem;
 }
 .input-field {
-  flex: 1;
-  padding: 0.5rem;
-  background-color: #f9fafb;
+  background-color: transparent;
 }
 </style>

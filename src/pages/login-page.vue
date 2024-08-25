@@ -5,7 +5,7 @@ import { ref, computed } from 'vue'
 
 const isLoading = ref(false)
 const isDisabled = computed(() => {
-  return true
+  return false
 })
 
 const handleClick = () => {
@@ -27,29 +27,32 @@ const handleClick = () => {
           </div>
         </div>
         <form @submit.prevent="onSubmit" class="login-form__body">
-          <!-- <div class="login-form__field">
-            <label for="username" class="login-form__label">Username</label>
-            <input id="username" type="text" v-model="username" class="login-form__input" />
-          </div> -->
-          <!-- <div class="login-form__field">
-            <label for="password" class="login-form__label">Password</label>
-            <input id="password" type="password" v-model="password" class="login-form__input" />
-          </div> -->
-          <!-- <button type="submit" class="login-form__submit-btn">Login</button> -->
-          <BaseInput label="شماره همراه" placeholder="مثلا ۰۹۱۲۳۴۵۶۷۸۹" />
-          <BaseInput label="رمز عبور" placeholder="رمز عبور">
+          <BaseInput
+            label="شماره همراه"
+            placeholder="مثلا ۰۹۱۲۳۴۵۶۷۸۹"
+            class="login-form__field"
+            labelStyle="login-form__label"
+            inputStyle="login-form__input"
+          />
+          <BaseInput
+            label="رمز عبور"
+            placeholder="رمز عبور"
+            labelStyle="login-form__label"
+            inputStyle="login-form__input"
+          >
             <template #suffix>
               <img src="../assets/icons/eye-closed.svg" alt="toggle-icon" />
             </template>
           </BaseInput>
           <BaseButton
+            class="login-form__submit-btn primary"
             :loading="isLoading"
             :disabled="isDisabled"
             :submitting="isSubmiting"
             @click="handleClick"
           >
             ورود
-            <template #loading> در حال ارسال کد ... <span class="sppiner"></span></template>
+            <template #loading>در حال ورود</template>
           </BaseButton>
         </form>
         <div class="login-form__support-text">
@@ -80,6 +83,8 @@ const handleClick = () => {
   &__header {
     @include flex-box(row, space-between, flex-end);
     color: var(--primary-500);
+    margin-bottom: -11rem;
+    margin-top: 5rem;
   }
   &__logo {
     width: 6rem;
@@ -95,6 +100,32 @@ const handleClick = () => {
   &__logo-subtitle {
     line-height: 2rem;
   }
+  &__body{
+    @include flex-box(column,center);
+    width: 22rem;
+  }
+  &__label {
+    color: var(--black-500);
+    padding: 0 0.5rem;
+  }
+  &__input {
+    height: 3rem;
+    background-color: var(--secondary-300);
+    border-radius: 0.375rem;
+    ::placeholder {
+      color: var(--black-100);
+      font-size:s 0.875rem;
+    }
+  }
+  &__submit-btn{
+    width: 100%;
+    border-radius: 0.5rem;
+    padding: 0.5rem 1rem;
+    height: 3rem;
+    margin-top: 2rem;
+
+
+  }
   &__support-text {
     @include flex-box(row, center, center, 0.25rem);
     color: var(--primary-500);
@@ -104,7 +135,7 @@ const handleClick = () => {
     width: 37.5rem;
     height: 52.5rem;
     @include flex-box(column, space-between, center);
-    padding: 1.25rem;
+    padding: 1.25rem 1.25rem 1.25rem 0;
   }
   &__image-section {
     @include flex-box(column, center, center);
