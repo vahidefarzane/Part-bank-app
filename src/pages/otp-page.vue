@@ -1,5 +1,5 @@
 <script setup>
-import otpForm from '@/components/view/OTP-form.vue'
+import otpForm from '@/components/view/OTP/otp-form.vue'
 </script>
 
 <template>

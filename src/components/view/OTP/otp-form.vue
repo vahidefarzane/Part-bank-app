@@ -1,9 +1,10 @@
 <script setup>
-import appTimer from './app-timer.vue'
+import appTimer from '../app-timer.vue'
 import { computed, ref } from 'vue'
-import baseButton from '../common/base-button.vue'
+import baseButton from '@/components/common/base-button.vue'
 import otpInputs from './otp-inputs.vue'
 import { useTimerStore } from '@/stores/timerStore'
+import router from '@/router'
 
 const timerStore = useTimerStore()
 
@@ -27,6 +28,13 @@ const isSubmiting = ref(false)
 const startTime = ref(false)
 
 const handleClick = () => {
+  if (isSubmiting.value) {
+    isLoading.value = true
+    setTimeout(() => {
+      isLoading.value = false
+      router.push('login')
+    }, 2000)
+  }
   isLoading.value = true
   isSubmiting.value = false
   setTimeout(() => {
@@ -67,23 +75,22 @@ if (timer.value === 0) {
       </div>
       <div class="otp-form__action-section">
         <appTimer />
-        <div class="otp-form__submit-btn">
-          <baseButton
-            :loading="isLoading"
-            :disabled="isDisabled"
-            :submitting="isSubmiting"
-            @click="handleClick"
-          >
-            ارسال مجدد
-            <template #submitting>ارسال</template>
-            <template #loading> در حال ارسال کد ... <span class="sppiner"></span></template>
-          </baseButton>
-        </div>
+        <baseButton
+          class="otp-form__submit-btn primary"
+          :loading="isLoading"
+          :disabled="isDisabled"
+          :submitting="isSubmiting"
+          @click="handleClick"
+        >
+          ارسال مجدد
+          <template #submitting>ارسال</template>
+          <template #loading> {{ isSubmiting ? 'در حال ورود' : 'در حال ارسال کد ...' }} </template>
+        </baseButton>
       </div>
     </form>
   </div>
 </template>
 
 <style lang="scss" scoped>
-@import '../../styles/sass/components/view/otp-form.scss';
+@import '@/styles/sass/components/view/otp-form.scss';
 </style>

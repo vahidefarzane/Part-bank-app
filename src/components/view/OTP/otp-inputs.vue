@@ -98,5 +98,5 @@ watch(otp, () => {
 </template>
 
 <style lang="scss">
-@import '../../styles/sass/components/view/otp-input.scss';
+@import '@/styles/sass/components/view/otp-input.scss';
 </style>

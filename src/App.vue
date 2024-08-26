@@ -1,10 +1,15 @@
 <script setup>
-import LoginPage from './pages/login-page.vue';
+// import AppTest from './components/common/app-test.vue';
+// import OtpForm from './components/view/OTP/otp-form.vue';
+// import OtpPage from './pages/otp-page.vue';
+// import LoginPage from './pages/login-page.vue';
 </script>
 
 <template>
   <div >
-    <LoginPage/>
+    <!-- <OtpPage/> -->
+    <!-- <AppTest/> -->
+    <RouterView/>
   </div>
 </template>
 
