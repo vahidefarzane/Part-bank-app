@@ -3,41 +3,24 @@ import BaseButton from '@/components/common/base-button.vue'
 import BaseInput from '@/components/common/base-input.vue'
 import { Form } from 'vee-validate'
 import { ref, computed, reactive } from 'vue'
-import * as yup from 'yup'
-
+import { loginSchema } from '@/plugins/validations'
 
 const formData = reactive({
-  phone: '',
+  phoneNumber: '',
   password: ''
 })
+
 const isLoading = ref(false)
 const isDisabled = computed(() => {
-  console.log(formData.phone === '' && formData.password === '');
-  
   return formData.phone === '' && formData.password === ''
 })
 
 const submit = (values) => {
-
   isLoading.value = true
   setTimeout(() => {
     isLoading.value = false
   }, 3000)
 }
-const schema = yup.object({
-  phone: yup
-    .string()
-    .required('شماره همراه الزامی است')
-    .min(11, 'لطفا شماره همراه را کامل وارد کنید')
-    .max(11, 'شماره همراه باید 11 رقم باشد'),
-  password: yup
-    .string()
-    .required('رمز عبور الزامی است')
-    .min(8, 'رمز عبور باید 8 رقم باشد')
-    .max(8, 'رمز عبور باید 8 رقم باشد')
-})
-
-
 </script>
 <template>
   <div class="container">
@@ -51,13 +34,13 @@ const schema = yup.object({
           </div>
         </div>
         <Form
-          :validation-schema="schema"
+          :validation-schema="loginSchema"
           @submit="submit"
           :initial-values="formData"
           class="login-form__body"
         >
           <BaseInput
-            name="phone"
+            name="phoneNumber"
             label="شماره همراه"
             placeholder="مثلا ۰۹۱۲۳۴۵۶۷۸۹"
             class="login-form__field"
@@ -79,7 +62,6 @@ const schema = yup.object({
             class="login-form__submit-btn primary"
             :loading="isLoading"
             :disabled="isDisabled"
-            :submitting="isSubmiting"
           >
             ورود
             <template #loading>در حال ورود</template>
