@@ -1,19 +1,43 @@
 <script setup>
 import BaseButton from '@/components/common/base-button.vue'
 import BaseInput from '@/components/common/base-input.vue'
-import { ref, computed } from 'vue'
+import { Form } from 'vee-validate'
+import { ref, computed, reactive } from 'vue'
+import * as yup from 'yup'
 
+
+const formData = reactive({
+  phone: '',
+  password: ''
+})
 const isLoading = ref(false)
 const isDisabled = computed(() => {
-  return false
+  console.log(formData.phone === '' && formData.password === '');
+  
+  return formData.phone === '' && formData.password === ''
 })
 
-const handleClick = () => {
+const submit = (values) => {
+
   isLoading.value = true
   setTimeout(() => {
     isLoading.value = false
   }, 3000)
 }
+const schema = yup.object({
+  phone: yup
+    .string()
+    .required('شماره همراه الزامی است')
+    .min(11, 'لطفا شماره همراه را کامل وارد کنید')
+    .max(11, 'شماره همراه باید 11 رقم باشد'),
+  password: yup
+    .string()
+    .required('رمز عبور الزامی است')
+    .min(8, 'رمز عبور باید 8 رقم باشد')
+    .max(8, 'رمز عبور باید 8 رقم باشد')
+})
+
+
 </script>
 <template>
   <div class="container">
@@ -26,8 +50,14 @@ const handleClick = () => {
             <span class="login-form__logo-subtitle">تجربه‌ای نوین در بانک داری</span>
           </div>
         </div>
-        <form @submit.prevent="onSubmit" class="login-form__body">
+        <Form
+          :validation-schema="schema"
+          @submit="submit"
+          :initial-values="formData"
+          class="login-form__body"
+        >
           <BaseInput
+            name="phone"
             label="شماره همراه"
             placeholder="مثلا ۰۹۱۲۳۴۵۶۷۸۹"
             class="login-form__field"
@@ -35,6 +65,7 @@ const handleClick = () => {
             inputStyle="login-form__input"
           />
           <BaseInput
+            name="password"
             label="رمز عبور"
             placeholder="رمز عبور"
             labelStyle="login-form__label"
@@ -49,12 +80,11 @@ const handleClick = () => {
             :loading="isLoading"
             :disabled="isDisabled"
             :submitting="isSubmiting"
-            @click="handleClick"
           >
             ورود
             <template #loading>در حال ورود</template>
           </BaseButton>
-        </form>
+        </Form>
         <div class="login-form__support-text">
           <span>پشتیبانی:</span>
           <span>۰۲۱-۱۲۳۴۵۶۷۸</span>
@@ -100,8 +130,8 @@ const handleClick = () => {
   &__logo-subtitle {
     line-height: 2rem;
   }
-  &__body{
-    @include flex-box(column,center);
+  &__body {
+    @include flex-box(column, center);
     width: 22rem;
   }
   &__label {
@@ -114,17 +144,15 @@ const handleClick = () => {
     border-radius: 0.375rem;
     ::placeholder {
       color: var(--black-100);
-      font-size:s 0.875rem;
+      font-size: s 0.875rem;
     }
   }
-  &__submit-btn{
+  &__submit-btn {
     width: 100%;
     border-radius: 0.5rem;
     padding: 0.5rem 1rem;
     height: 3rem;
     margin-top: 2rem;
-
-
   }
   &__support-text {
     @include flex-box(row, center, center, 0.25rem);

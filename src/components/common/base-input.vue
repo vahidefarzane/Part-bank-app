@@ -1,8 +1,9 @@
 <script setup>
-import { ref, computed } from 'vue'
+import { ref } from 'vue'
+import { useField } from 'vee-validate'
 
 const props = defineProps({
-  modelValue: {
+  name: {
     type: String,
     required: true
   },
@@ -18,10 +19,7 @@ const props = defineProps({
     type: String,
     default: ''
   },
-  disabled: {
-    type: Boolean,
-    default: false
-  },
+
   labelStyle: {
     type: String
   },
@@ -29,42 +27,37 @@ const props = defineProps({
     type: String
   }
 })
-const emit = defineEmits(['update:modelValue'])
-
 const inputId = ref(`input-${Math.random().toString(36).substr(2, 9)}`)
-const inputValue = computed({
-  get: () => props.modelValue,
-  set: (value) => emit('update:modelValue', value)
-})
 
-const handleInput = (event) => {
-  emit('update:modelValue', event.target.value)
-}
+const { value, errorMessage, meta } = useField(() => props.name)
 </script>
 
 <template>
   <div class="input-container">
     <label v-if="label" :for="inputId" :class="labelStyle" class="input-label">{{ label }}</label>
-    <div class="input-wrapper" :class="inputStyle">
+    <div
+      class="input-wrapper"
+      :class="[inputStyle, { field_error: errorMessage, valid: meta.valid }]"
+    >
       <slot name="prefix" />
       <input
         :id="inputId"
-        v-model="inputValue"
+        v-model="value"
         :type="type"
         :placeholder="placeholder"
-        :disabled="disabled"
         @input="handleInput"
         class="input-field"
       />
       <slot name="suffix" />
     </div>
+    <span class="error-msg" :class="errorMessage ? 'error_message' : ''">{{ errorMessage }}</span>
   </div>
 </template>
 
 <style lang="scss" scoped>
 .input-container {
   @include flex-box(column, center, flex-start, 0.25rem);
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
 }
 .input-label {
   padding: 0 0.5rem;
@@ -76,5 +69,19 @@ const handleInput = (event) => {
 }
 .input-field {
   background-color: transparent;
+}
+.field_error {
+  border: 1px solid red !important;
+}
+.valid {
+  border: 1px solid green !important;
+}
+.error_message{
+  color: red;
+}
+.error-msg{
+  height: 1rem;
+  font-size: 14px;
+
 }
 </style>

@@ -10,7 +10,6 @@ const props = defineProps({
     type: Boolean,
     default: false
   },
-
   submitting: {
     type: Boolean,
     default: false
