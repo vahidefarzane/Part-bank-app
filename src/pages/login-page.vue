@@ -2,20 +2,16 @@
 import BaseButton from '@/components/common/base-button.vue'
 import BaseInput from '@/components/common/base-input.vue'
 import { Form } from 'vee-validate'
-import { ref, computed, reactive } from 'vue'
+import { ref } from 'vue'
 import { loginSchema } from '@/plugins/validations'
 
-const formData = reactive({
+const formData = ref({
   phoneNumber: '',
   password: ''
 })
 
 const isLoading = ref(false)
-const isDisabled = computed(() => {
-  return formData.phone === '' && formData.password === ''
-})
-
-const submit = (values) => {
+const submit = () => {
   isLoading.value = true
   setTimeout(() => {
     isLoading.value = false
@@ -34,16 +30,15 @@ const submit = (values) => {
           </div>
         </div>
         <Form
-          :validation-schema="loginSchema"
           @submit="submit"
-          :initial-values="formData"
+          :validationSchema="loginSchema"
+          :initialValues="formData"
           class="login-form__body"
         >
           <BaseInput
             name="phoneNumber"
             label="شماره همراه"
             placeholder="مثلا ۰۹۱۲۳۴۵۶۷۸۹"
-            class="login-form__field"
             labelStyle="login-form__label"
             inputStyle="login-form__input"
           />
@@ -58,11 +53,7 @@ const submit = (values) => {
               <img src="../assets/icons/eye-closed.svg" alt="toggle-icon" />
             </template>
           </BaseInput>
-          <BaseButton
-            class="login-form__submit-btn primary"
-            :loading="isLoading"
-            :disabled="isDisabled"
-          >
+          <BaseButton class="login-form__submit-btn primary" :loading="isLoading">
             ورود
             <template #loading>در حال ورود</template>
           </BaseButton>

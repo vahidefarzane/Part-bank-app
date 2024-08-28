@@ -1,5 +1,5 @@
 <script setup>
-import { ref } from 'vue'
+import { ref, defineProps } from 'vue'
 import { useField } from 'vee-validate'
 
 const props = defineProps({
@@ -27,9 +27,10 @@ const props = defineProps({
     type: String
   }
 })
-const inputId = ref(`input-${Math.random().toString(36).substr(2, 9)}`)
 
-const { value, errorMessage, meta } = useField(() => props.name)
+const inputId = ref(`input-${Math.random().toString(36).substr(2, 9)}`)
+const { value, errorMessage, meta } = useField(props.name)
+
 </script>
 
 <template>
@@ -45,7 +46,6 @@ const { value, errorMessage, meta } = useField(() => props.name)
         v-model="value"
         :type="type"
         :placeholder="placeholder"
-        @input="handleInput"
         class="input-field"
       />
       <slot name="suffix" />
@@ -76,12 +76,11 @@ const { value, errorMessage, meta } = useField(() => props.name)
 .valid {
   border: 1px solid green !important;
 }
-.error_message{
+.error_message {
   color: red;
 }
-.error-msg{
+.error-msg {
   height: 1rem;
   font-size: 14px;
-
 }
 </style>
