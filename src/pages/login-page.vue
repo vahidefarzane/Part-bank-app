@@ -71,7 +71,7 @@ const submit = () => {
   </div>
 </template>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .container {
   @include flex-box(row, center, center);
   background: url(@/assets/images/bg-image.png) lightgray 0px -100px / 100% 118.519% no-repeat;

@@ -1,12 +1,16 @@
-<script setup></script>
+<script setup>
+import createDepositAccountWrapper from '@/components/common/create-deposit-account-wrapper.vue'
+</script>
 
 <template>
-  <create-deposit-account-page
-    title="اطلاعات فردی"
-    primaryBtnContent="ثبت و ادامه"
-    secondaryBtnContent="قبلی"
-  >
-  </create-deposit-account-page>
+  <div>
+    <createDepositAccountWrapper
+      title="اطلاعات فردی"
+      primaryBtnContent="ثبت و ادامه"
+      secondaryBtnContent="قبلی"
+    >
+    </createDepositAccountWrapper>
+  </div>
 </template>
 
 <style></style>

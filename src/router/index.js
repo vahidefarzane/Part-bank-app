@@ -7,18 +7,17 @@ const router = createRouter({
   history: createWebHistory(),
   routes: [
     {
+      path: '/',
+      component: CreateDepositAccountPage
+    },
+    {
       path: '/otp-page',
       component: OtpPage
     },
     {
       path: '/login',
       component: LoginPage
-    },
-    {
-      path: '/create-deposit-account',
-      component: CreateDepositAccountPage
-    },
-    
+    }
   ]
 })
 
