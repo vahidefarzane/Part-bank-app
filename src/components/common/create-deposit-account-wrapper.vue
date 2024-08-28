@@ -1,5 +1,6 @@
 <script setup>
 import BaseButton from './base-button.vue'
+import BaseDivider from './base-divider.vue';
 
 defineProps({
   title: {
@@ -25,6 +26,7 @@ defineProps({
       <header class="layout__header">
         <h1 class="layout__title">{{ title }}</h1>
       </header>
+      <BaseDivider/>
 
       <main>
         <slot />
