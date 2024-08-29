@@ -4,6 +4,7 @@ import baseButton from '@/components/common/base-button.vue'
 import createDepositAccountWrapper from '@/components/common/create-deposit-account-wrapper.vue'
 import { Form } from 'vee-validate'
 import { creationDepositAcountSchema } from '@/plugins/validations'
+import BaseTextarea from '@/components/view/base-textarea.vue'
 
 const submit = (values) => {
   console.log(values)
@@ -53,6 +54,9 @@ const submit = (values) => {
           >
           </BaseInput>
         </div>
+        <div class="deposit-form__group">
+          <BaseTextarea/>
+        </div>
         <div class="deposit-form__nav">
           <baseButton class="deposit-form__nav-btn secondary">قبلی</baseButton>
           <baseButton class="deposit-form__nav-btn primary">ثبت و ادامه</baseButton>
@@ -78,11 +82,10 @@ const submit = (values) => {
   &__label {
     @include font-style(0.875rem, 500);
     color: var(--secondary-200);
-    padding: 0 0.5rem;
   }
   &__input {
     background: var(--secondary-300);
-    border: 1px solid var(--black-50);
+    border: 1px solid var(--black-50) !important;
     border-radius: 0.375rem;
     height: 3rem;
     ::placeholder {
