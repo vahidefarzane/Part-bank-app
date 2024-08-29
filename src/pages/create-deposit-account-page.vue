@@ -55,10 +55,18 @@ const submit = (values) => {
           </BaseInput>
         </div>
         <div class="deposit-form__group">
-          <BaseTextarea/>
+          <BaseTextarea
+            name="address"
+            label="محل سکونت"
+            placeholder="آدرس محل سکونت"
+            class="deposit-form__textarea-field"
+            labelStyle="deposit-form__label"
+            textareaStyle="deposit-form__textarea"
+            rows="6"
+          />
         </div>
         <div class="deposit-form__nav">
-          <baseButton class="deposit-form__nav-btn secondary">قبلی</baseButton>
+          <baseButton type="submit" class="deposit-form__nav-btn secondary">قبلی</baseButton>
           <baseButton class="deposit-form__nav-btn primary">ثبت و ادامه</baseButton>
         </div>
       </Form>
@@ -79,6 +87,20 @@ const submit = (values) => {
     width: 25rem;
     flex: 1;
   }
+  &__textarea-field {
+    flex: 1;
+  }
+  &__textarea {
+    background: var(--secondary-300);
+    border: 1px solid var(--black-50) ;
+    border-radius: 0.375rem;
+    flex: 1;
+    ::placeholder {
+      color: var(--black-100);
+      font-size: 0.875rem;
+    }
+  }
+
   &__label {
     @include font-style(0.875rem, 500);
     color: var(--secondary-200);

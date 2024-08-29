@@ -13,6 +13,9 @@ const props = defineProps({
   submitting: {
     type: Boolean,
     default: false
+  },
+  type: {
+    type: String
   }
 })
 
@@ -26,6 +29,7 @@ const handleClick = (event) => {
 </script>
 <template>
   <button
+    :type="type"
     :class="['button', { 'is-loading': loading, 'is-disabled': disabled }]"
     @click="handleClick"
     :disabled="disabled || loading"
@@ -47,20 +51,18 @@ const handleClick = (event) => {
 
 <style lang="scss" scoped>
 .button {
-  @include flex-box(row,center,center,0.75rem);
+  @include flex-box(row, center, center, 0.75rem);
   &__loading {
-    @include flex-box(row, center, center,0.25rem);
+    @include flex-box(row, center, center, 0.25rem);
   }
 }
-.primary{
+.primary {
   background-color: var(--primary-500);
   color: var(--color-white);
-
 }
-.secondary{
+.secondary {
   background-color: var(--primary-50);
-  color : var(--black-500)
-
+  color: var(--black-500);
 }
 .is-loading {
   cursor: wait;
