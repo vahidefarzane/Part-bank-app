@@ -25,11 +25,16 @@ const props = defineProps({
   },
   inputStyle: {
     type: String
+  },
+  keyPressHandeler:{
+    type: String
   }
 })
 
 const inputId = ref(`input-${Math.random().toString(36).substr(2, 9)}`)
 const { value, errorMessage, meta } = useField(props.name)
+
+
 
 </script>
 
@@ -47,6 +52,7 @@ const { value, errorMessage, meta } = useField(props.name)
         :type="type"
         :placeholder="placeholder"
         class="input-field"
+        @keypress="keyPressHandeler"
       />
       <slot name="suffix" />
     </div>
@@ -68,7 +74,10 @@ const { value, errorMessage, meta } = useField(props.name)
   padding: 0 0.5rem;
 }
 .input-field {
+  width: 100%;
   background-color: transparent;
+  color: var(--black-500);
+
 }
 .field_error {
   border: 1px solid red !important;

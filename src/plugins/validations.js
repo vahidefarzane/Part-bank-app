@@ -15,11 +15,11 @@ const passwordRules = yup
 const firstNameRules = yup
   .string()
   .required('وارد کردن نام الزامی است')
-  .min(8, 'نام باید حداقل 3 حرفی باشد')
+  .min(3, 'نام باید حداقل 3 حرفی باشد')
 const lastNameRules = yup
   .string()
   .required('وارد کردن نام خانوادگی الزامی است')
-  .min(8, 'نام خانوادگی باید حداقل 3 حرفی باشد')
+  .min(3, 'نام خانوادگی باید حداقل 3 حرفی باشد')
 
 const postalCodeRules = yup
   .string()

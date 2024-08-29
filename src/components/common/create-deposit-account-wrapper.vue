@@ -1,22 +1,11 @@
 <script setup>
-import BaseButton from './base-button.vue'
-import BaseDivider from './base-divider.vue';
+import BaseDivider from './base-divider.vue'
 
 defineProps({
   title: {
     type: String,
     requaired: true
   },
-  primaryBtnContent: {
-    type: String,
-    requaired: true,
-    default: 'ثبت و ادامه'
-  },
-  secondaryBtnContent: {
-    type: String,
-    requaired: true,
-    default: 'قبلی'
-  }
 })
 </script>
 
@@ -26,17 +15,10 @@ defineProps({
       <header class="layout__header">
         <h1 class="layout__title">{{ title }}</h1>
       </header>
-      <BaseDivider/>
-
+      <BaseDivider />
       <main>
         <slot />
       </main>
-      <nav>
-        <div class="layout__nav">
-          <BaseButton class="layout__nav-btn secondary">{{ secondaryBtnContent }}</BaseButton>
-          <BaseButton class="layout__nav-btn primary">{{ primaryBtnContent }}</BaseButton>
-        </div>
-      </nav>
     </section>
   </div>
 </template>
@@ -61,20 +43,10 @@ defineProps({
   &__header {
     @include flex-box(row, center, center);
   }
-  &__title{
-    @include font-style(1.25rem,700);
-    color : var(--black-500)
+  &__title {
+    @include font-style(1.25rem, 700);
+    color: var(--black-500);
+  }
  
-  }
-  &__nav {
-    @include flex-box(row, flex-end, center, 1rem);
-  }
-  &__nav-btn {
-    width: 13rem;
-    border-radius: 0.5rem;
-    padding: 0.5rem 1rem;
-    height: 3rem;
-    margin-top: 2rem;
-  }
 }
 </style>
