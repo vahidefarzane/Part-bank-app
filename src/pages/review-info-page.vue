@@ -11,12 +11,31 @@ import reviewInfo from '@/components/view/review-info.vue'
           title="نام :"
           content="وحیده"
           titleStyle="review-info__title"
+          contentStyle="review-info__content"
         />
-        <reviewInfo class="review-info__field" title="نام خانوادگی :" content="فرزانه" />
-        <reviewInfo class="review-info__field" title="کد پستی :" content="9179164123" />
+        <reviewInfo
+          class="review-info__field"
+          title="نام خانوادگی :"
+          content="فرزانه"
+          titleStyle="review-info__title"
+          contentStyle="review-info__content"
+        />
+        <reviewInfo
+          class="review-info__field"
+          title="کد پستی :"
+          content="9179164123"
+          titleStyle="review-info__title"
+          contentStyle="review-info__content"
+        />
       </div>
       <div class="review-info__group">
-        <reviewInfo class="review-info__field" title="آدرس محل سکونت :" content="وکیل اباد " />
+        <reviewInfo
+          class="review-info__field"
+          title="آدرس محل سکونت :"
+          content="وکیل اباد "
+          titleStyle="review-info__title"
+          contentStyle="review-info__content"
+        />
       </div>
       <div class="review-info__nav">
         <baseButton class="review-info__nav-btn secondary">قبلی</baseButton>
@@ -26,7 +45,7 @@ import reviewInfo from '@/components/view/review-info.vue'
   </createDepositAccountWrapper>
 </template>
 
-<style lang="scss">
+<style lang="scss" >
 .review-info {
   @include flex-box(column, flex-start, null, 0.25rem);
   &__title {
