@@ -15,8 +15,6 @@ const submit = (values) => {
   <div>
     <createDepositAccountWrapper
       title="اطلاعات فردی"
-      primaryBtnContent="ثبت و ادامه"
-      secondaryBtnContent="قبلی"
     >
       <Form
         @submit="submit"

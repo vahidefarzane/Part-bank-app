@@ -49,7 +49,7 @@ const handleClick = (event) => {
   </button>
 </template>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .button {
   @include flex-box(row, center, center, 0.75rem);
   &__loading {
