@@ -84,7 +84,7 @@ const submit = (values) => {
     flex-wrap: wrap;
   }
   &__field {
-    width: 25rem;
+    // width: 25rem;
     flex: 1;
   }
   &__textarea-field {
