@@ -28,6 +28,7 @@ const postalCodeRules = yup
   .max(10, 'کد پستی باید 10 رقمی باشد')
 const addressRules = yup.string().required('وارد کردن آدرس محل سکونت الزامی است')
 
+
 export const loginSchema = {
   phoneNumber: phoneNubmerRules,
   password: passwordRules
@@ -39,3 +40,4 @@ export const creationDepositAcountSchema = {
   postalCode: postalCodeRules,
   address: addressRules
 }
+

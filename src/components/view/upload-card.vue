@@ -1,6 +1,7 @@
 <script setup>
-import { ref,watch,onMounted } from 'vue';
+import { ref, watch } from 'vue'
 const props = defineProps({
+
   caption: {
     type: String,
     required: true
@@ -17,14 +18,16 @@ const props = defineProps({
     default: null
   }
 })
+
 const imageUrl = ref(props.initialImageUrl)
+const isUploaded = ref(false)
 const emit = defineEmits(['image-uploaded'])
 
-
-const onFileChange = (event) => {
+const onFileChange = () => {
   const file = event.target.files[0]
   if (file) {
     imageUrl.value = URL.createObjectURL(file)
+    isUploaded.value = true
     emit('image-uploaded', { id: props.id, file })
   }
 }
@@ -35,12 +38,11 @@ watch(imageUrl, (newUrl) => {
 })
 </script>
 <template>
-  <div class="upload-card">
+  <div class="upload-card" >
     <div v-if="imageUrl" class="upload-card__img">
       <img :src="imageUrl" :alt="altImage" />
     </div>
-
-    <div class="upload-card__body-wrapper" v-if="true">
+    <div class="upload-card__body-wrapper" v-if="!isUploaded">
       <div class="upload-card__body">
         <img class="upload-card__icon" src="./../../assets/icons/uploader.svg" alt="upload" />
         <label :for="id" class="upload-card__label">
@@ -51,16 +53,16 @@ watch(imageUrl, (newUrl) => {
           class="upload-card__input"
           type="file"
           :id="id"
-          @change="onFileChange"
+          @change="onFileChange(id)"
           accept="image/*"
         />
       </div>
     </div>
 
     <div class="upload-card__caption caption">
-      <span class="caption__text">{{ label }}</span>
-      <span class="caption__options">
-        <img src="../../assets/icons/more-dark.svg" alt="" />
+      <span class="caption__text">{{ caption }}</span>
+      <span class="caption__options" v-if="isUploaded">
+        <img src="../../assets/icons/more-dark.svg" alt="more" />
       </span>
     </div>
   </div>
@@ -73,6 +75,7 @@ watch(imageUrl, (newUrl) => {
   border-radius: 0.75rem;
   width: 20rem;
   height: 14.5rem;
+  
 
   &__body-wrapper {
     @include flex-box(column, center, center);
@@ -112,5 +115,8 @@ watch(imageUrl, (newUrl) => {
     @include font-style(0.875rem, 400);
     color: var(--black-500);
   }
+}
+.field_error{
+  border: 1px solid red;
 }
 </style>
