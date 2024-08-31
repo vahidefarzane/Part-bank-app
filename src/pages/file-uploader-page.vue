@@ -2,6 +2,7 @@
 import createDepositAccountWrapper from '@/components/common/create-deposit-account-wrapper.vue'
 import uploadCard from '@/components/view/upload-card.vue'
 import baseButton from '@/components/common/base-button.vue'
+import theHeader from '@/components/view/the-header.vue'
 import { ref } from 'vue'
 
 const uploadedImages = ref({
@@ -19,6 +20,9 @@ const submit = () => {
 }
 </script>
 <template>
+  <div>
+
+  <theHeader/>
   <createDepositAccountWrapper title="تصویر کارت ملی">
     <form @submit.prevent="submit">
       <div class="file-uploader__container">
@@ -41,6 +45,7 @@ const submit = () => {
       </div>
     </form>
   </createDepositAccountWrapper>
+</div>
 </template>
 
 <style lang="scss">
