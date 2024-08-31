@@ -11,6 +11,7 @@ const uploadedImages = ref({
 const handleImageUpload = ({ id, file, url }) => {
   uploadedImages.value[id] = { file, url }
 }
+
 const submit = () => {
   if (!uploadedImages.value.front || !uploadedImages.value.back) {
     console.log('error')
@@ -39,7 +40,6 @@ const submit = () => {
         <baseButton class="file-uploader__nav-btn primary">ثبت و ادامه</baseButton>
       </div>
     </form>
-    
   </createDepositAccountWrapper>
 </template>
 

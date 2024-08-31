@@ -1,8 +1,7 @@
 <script setup>
-import { reactive, ref, watch } from 'vue'
+import { ref } from 'vue'
 import cardOptions from './card-options.vue'
-import edit from '@/assets/icons/edit.svg'
-import deletE from '@/assets/icons/trash.svg'
+import BaseDivider from '../common/base-divider.vue'
 const props = defineProps({
   caption: {
     type: String,
@@ -21,37 +20,74 @@ const props = defineProps({
   }
 })
 const isVisibleOptionsCard = ref(false)
-const optionsList = reactive([
-  { id: 1, name: 'ویرایش', src: edit, altIcon: edit,style : 'editStyle' },
-  { id: 2, name: 'حذف', src: deletE, altIcon: deletE ,style: "deleteStyle" }
-])
+
 const imageUrl = ref(props.initialImageUrl)
 const isUploaded = ref(false)
-const emit = defineEmits(['image-uploaded'])
+const isDragging = ref(false)
 
-const onFileChange = () => {
-  const file = event.target.files[0]
+const emit = defineEmits(['image-uploaded', 'image-deleted', 'image-edited'])
+
+const onFileChange = (event) => {
+  let file
+
+  if (event.type === 'change') {
+    file = event.target.files[0]
+  } else if (event.type === 'drop') {
+    console.log('Drop event:', event)
+    file = event.dataTransfer?.files[0]
+  }
   if (file) {
     imageUrl.value = URL.createObjectURL(file)
     isUploaded.value = true
-    emit('image-uploaded', { id: props.id, file })
+    emit('image-uploaded', { id: props.id, file, url: imageUrl.value })
   }
 }
-watch(imageUrl, (newUrl) => {
-  if (newUrl) {
-    emit('image-uploaded', { id: props.id, url: newUrl })
-  }
-})
+
+const handleDragOver = (event) => {
+  event.preventDefault()
+  isDragging.value = true
+}
+
+const handleDragLeave = () => {
+  isDragging.value = false
+}
+
+const handleDrop = (event) => {
+  event.preventDefault()
+  isDragging.value = false
+  onFileChange(event)
+}
+
 const showOptionCrad = () => {
-  isVisibleOptionsCard.value = true
+  isVisibleOptionsCard.value = !isVisibleOptionsCard.value
+}
+const handelImageEdit = () => {
+  imageUrl.value = ''
+  isUploaded.value = false
+  isVisibleOptionsCard.value = false
+  emit('image-edited', { id: props.id })
+}
+const handelImageDelete = () => {
+  imageUrl.value = ''
+  isUploaded.value = false
+  isVisibleOptionsCard.value = false
+  emit('image-deleted', { id: props.id })
 }
 </script>
 <template>
-  <div class="upload-card">
+  <div
+    class="upload-card"
+    @dragover="handleDragOver"
+    @dragleave="handleDragLeave"
+    @drop="handleDrop"
+  >
     <div v-if="imageUrl" class="upload-card__img">
       <img :src="imageUrl" :alt="altImage" />
     </div>
-    <div class="upload-card__body-wrapper" v-if="!isUploaded">
+    <div
+      :class="['upload-card__body-wrapper', { 'upload-card__body-wrapper_dragging': isDragging }]"
+      v-if="!isUploaded"
+    >
       <div class="upload-card__body">
         <img class="upload-card__icon" src="./../../assets/icons/uploader.svg" alt="upload" />
         <label :for="id" class="upload-card__label">
@@ -62,7 +98,7 @@ const showOptionCrad = () => {
           class="upload-card__input"
           type="file"
           :id="id"
-          @change="onFileChange(id)"
+          @change="onFileChange"
           accept="image/*"
         />
       </div>
@@ -71,11 +107,19 @@ const showOptionCrad = () => {
     <div class="upload-card__caption caption">
       <span class="caption__text">{{ caption }}</span>
       <span class="caption__options" v-if="isUploaded">
-        <cardOptions
-          :options="optionsList"
-          v-if="isVisibleOptionsCard"
-          class="caption__options-list"
-        />
+        <cardOptions v-if="isVisibleOptionsCard" class="caption__options-list">
+          <template #main>
+            <div class="options" @click="handelImageEdit()">
+              <img class="options__icon" src="../../assets/icons/edit.svg" alt="edit" />
+              <span class="options__text options__text_edit">ویرایش</span>
+            </div>
+            <BaseDivider class="options__divider" />
+            <div class="options" @click="handelImageDelete()">
+              <img class="options__icon" src="../../assets/icons/trash.svg" alt="delete" />
+              <span class="options__text options__text_delete">حذف</span>
+            </div>
+          </template>
+        </cardOptions>
         <img src="../../assets/icons/more-dark.svg" alt="more" @click="showOptionCrad" />
       </span>
     </div>
@@ -94,6 +138,9 @@ const showOptionCrad = () => {
     @include flex-box(column, center, center);
     background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' rx='12' ry='12' stroke='%23E2EDFFFF' stroke-width='2' stroke-dasharray='6%2c 10' stroke-dashoffset='4' stroke-linecap='round'/%3e%3c/svg%3e");
     height: 11.25rem;
+    &.upload-card__body-wrapper_dragging {
+      background-color: var(--primary-100);
+    }
   }
   &__img {
     height: 11.25rem;
@@ -132,6 +179,7 @@ const showOptionCrad = () => {
   &__options {
     position: relative;
     &-list {
+      width: 7rem;
       box-shadow: 0px 0px 4px 0px rgba(0, 67, 101, 0.05);
       background-color: var(--color-white);
       border-radius: 0.5rem;
@@ -142,13 +190,20 @@ const showOptionCrad = () => {
     }
   }
 }
-
-.editStyle{
-  @include font-style(0.875rem,400);
-  color: var(--black-500);
-}
-.deleteStyle{
-  @include font-style(0.875rem,400);
-  color: var(--fail-500);
+.options {
+  width: 5rem;
+  @include flex-box(row, flex-start, center, 0.5rem);
+  &__text {
+    @include font-style(0.875rem, 400);
+    &_edit {
+      color: var(--black-500);
+    }
+    &_delete {
+      color: var(--fail-500);
+    }
+  }
+  &__divider {
+    height: 1px;
+  }
 }
 </style>
