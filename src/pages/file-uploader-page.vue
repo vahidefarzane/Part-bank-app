@@ -39,6 +39,7 @@ const submit = () => {
         <baseButton class="file-uploader__nav-btn primary">ثبت و ادامه</baseButton>
       </div>
     </form>
+    
   </createDepositAccountWrapper>
 </template>
 

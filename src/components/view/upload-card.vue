@@ -1,7 +1,9 @@
 <script setup>
-import { ref, watch } from 'vue'
+import { reactive, ref, watch } from 'vue'
+import cardOptions from './card-options.vue'
+import edit from '@/assets/icons/edit.svg'
+import deletE from '@/assets/icons/trash.svg'
 const props = defineProps({
-
   caption: {
     type: String,
     required: true
@@ -18,7 +20,11 @@ const props = defineProps({
     default: null
   }
 })
-
+const isVisibleOptionsCard = ref(false)
+const optionsList = reactive([
+  { id: 1, name: 'ویرایش', src: edit, altIcon: edit },
+  { id: 2, name: 'حذف', src: deletE, altIcon: deletE }
+])
 const imageUrl = ref(props.initialImageUrl)
 const isUploaded = ref(false)
 const emit = defineEmits(['image-uploaded'])
@@ -36,9 +42,12 @@ watch(imageUrl, (newUrl) => {
     emit('image-uploaded', { id: props.id, url: newUrl })
   }
 })
+const showOptionCrad = () => {
+  isVisibleOptionsCard.value = true
+}
 </script>
 <template>
-  <div class="upload-card" >
+  <div class="upload-card">
     <div v-if="imageUrl" class="upload-card__img">
       <img :src="imageUrl" :alt="altImage" />
     </div>
@@ -62,7 +71,12 @@ watch(imageUrl, (newUrl) => {
     <div class="upload-card__caption caption">
       <span class="caption__text">{{ caption }}</span>
       <span class="caption__options" v-if="isUploaded">
-        <img src="../../assets/icons/more-dark.svg" alt="more" />
+        <cardOptions
+          :options="optionsList"
+          v-if="isVisibleOptionsCard"
+          class="caption__options-list"
+        />
+        <img src="../../assets/icons/more-dark.svg" alt="more" @click="showOptionCrad" />
       </span>
     </div>
   </div>
@@ -75,7 +89,6 @@ watch(imageUrl, (newUrl) => {
   border-radius: 0.75rem;
   width: 20rem;
   height: 14.5rem;
-  
 
   &__body-wrapper {
     @include flex-box(column, center, center);
@@ -111,12 +124,25 @@ watch(imageUrl, (newUrl) => {
 .caption {
   @include flex-box(row, space-between, center);
   padding: 1rem 0.75rem;
+
   &__text {
     @include font-style(0.875rem, 400);
     color: var(--black-500);
   }
+  &__options {
+    position: relative;
+    &-list {
+      box-shadow: 0px 0px 4px 0px rgba(0, 67, 101, 0.05);
+      background-color: var(--color-white);
+      border-radius: 0.5rem;
+      padding: 0.5rem 0.75rem;
+      position: absolute;
+      bottom: 1rem;
+      left: 1rem;
+    }
+  }
 }
-.field_error{
+.field_error {
   border: 1px solid red;
 }
 </style>
