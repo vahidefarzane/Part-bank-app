@@ -22,8 +22,8 @@ const props = defineProps({
 })
 const isVisibleOptionsCard = ref(false)
 const optionsList = reactive([
-  { id: 1, name: 'ویرایش', src: edit, altIcon: edit },
-  { id: 2, name: 'حذف', src: deletE, altIcon: deletE }
+  { id: 1, name: 'ویرایش', src: edit, altIcon: edit,style : 'editStyle' },
+  { id: 2, name: 'حذف', src: deletE, altIcon: deletE ,style: "deleteStyle" }
 ])
 const imageUrl = ref(props.initialImageUrl)
 const isUploaded = ref(false)
@@ -142,7 +142,13 @@ const showOptionCrad = () => {
     }
   }
 }
-.field_error {
-  border: 1px solid red;
+
+.editStyle{
+  @include font-style(0.875rem,400);
+  color: var(--black-500);
+}
+.deleteStyle{
+  @include font-style(0.875rem,400);
+  color: var(--fail-500);
 }
 </style>

@@ -14,7 +14,7 @@ defineProps({
     <div v-for="option in options" :key="option.name">
       <div class="options">
         <img class="options__icon" :src="option.src" :alt="option.altIcon" />
-        <span class="options__text">{{ option.name }}</span>
+        <span :class="option.style">{{ option.name }}</span>
       </div>
       <baseDivider class="options__divider" v-if="option.id !== options.length" />
     </div>
