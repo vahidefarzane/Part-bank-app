@@ -27,7 +27,7 @@ const sideBarListItems = reactive([
       <span class="side-bar__name">وحیده فرزانه</span>
       <div class="side-bar__code">
         <span class="side-bar__code_title">کدملی:</span>
-        <span class="side-bar__code_number">0923941894</span>
+        <span class="side-bar__code_number">۰۹۱۲۳۴۵۶۷۸</span>
       </div>
     </div>
     <dividerHr />
