@@ -3,8 +3,8 @@ import baseDivider from '../common/base-divider.vue'
 import sidebarItem from './sidebar-item.vue'
 import dashboardIcon from '@/assets/icons/element-4.svg'
 import walletIocn from '@/assets/icons/wallet.svg'
-import edit2 from '@/assets/icons/edit2.svg'
 import cards from '@/assets/icons/cards.svg'
+import wallet2 from "@/assets/icons/wallet2.svg"
 import recriptSearch from '@/assets/icons/receipt-search.svg'
 import cardPos from '@/assets/icons/card-pos.svg'
 import exit from '@/assets/icons/exit.svg'
@@ -12,7 +12,7 @@ import { reactive } from 'vue'
 const sideBarListItems = reactive([
   { id: 1, title: 'داشبورد', src: dashboardIcon, altImgText: 'dashboard' },
   { id: 2, title: 'حساب', src: walletIocn, altImgText: 'wallet' },
-  { id: 3, title: 'تسهیلات', src: edit2, altImgText: 'strong-box' },
+  { id: 3, title: 'تسهیلات', src: wallet2, altImgText: 'strong-box' },
   { id: 4, title: 'عملیات کارت', src: cards, altImgText: 'cards' },
   {
     id: 5,
@@ -58,6 +58,8 @@ const sideBarListItems = reactive([
   height: 50.25rem;
   padding: 1.5rem 0rem 0.5rem 0rem;
   background-color: var(--color-white);
+  border-radius: 0.75rem;
+
   &__header {
     @include flex-box(column, null, center, 2.25rem);
   }
@@ -66,7 +68,9 @@ const sideBarListItems = reactive([
     color: var(--black-500);
   }
   &__code {
-    @include flex-box(column, space-between, center);
+    @include flex-box(row, space-between, center);
+    width: 10.75rem;
+    height: 1.25rem;
     &_title {
       color: var(--secondary-200);
       @include font-style(0.75rem, 400);
@@ -81,8 +85,19 @@ const sideBarListItems = reactive([
   &__list {
     @include flex-box(column, null, flex-start, 0.125rem);
     padding: 0rem 0.5rem;
-    &_last{
+    width: 100%;
+    &_last {
+      @include flex-box(row, flex-start, center, 0.5rem);
+      height: 2.75rem;
+      padding: 0.5rem 1rem 0.5rem 0.75rem;
+      border-radius: 0.375rem;
+      &:hover {
+        background-color: var(--secondary-300);
+      }
+      span {
+        @include font-style(0.875rem, 400);
         color: var(--fail-500);
+      }
     }
   }
 }

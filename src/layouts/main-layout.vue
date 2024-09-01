@@ -11,8 +11,7 @@ import theHeader from '@/components/view/the-header.vue'
 
 <style lang="scss">
 .main-layout {
-  display: flex;
-  flex-direction: column;
+  @include flex-box(column, null, center);
   background-color: var(--secondary-50);
   height: 100vh;
 }

@@ -24,10 +24,10 @@ const router = createRouter({
       path: '/',
       name: 'Account',
       component: mainLayout,
-
+    
       children: [
         {
-          path: 'dashboard',
+          path: '/',
           name: 'Dashboard',
           component: dashboardLayout,
           meta: {

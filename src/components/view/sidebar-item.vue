@@ -29,6 +29,7 @@ defineProps({
   height: 2.75rem;
   padding: 0.5rem 1rem 0.5rem 0.75rem;
   border-radius: 0.375rem;
+  width: 12.75rem;
   &:hover {
     background-color: var(--secondary-300);
   }

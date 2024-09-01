@@ -28,6 +28,7 @@
   background-color: var(--color-white);
   @include flex-box(row, space-between, center);
   padding: 1rem 2.5rem;
+  margin-bottom: 2.5rem;
   &__logo {
     @include flex-box(row, flex-start, center, 0.75rem);
     &_icon {

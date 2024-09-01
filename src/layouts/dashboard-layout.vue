@@ -11,6 +11,7 @@ import theSidebar from '@/components/view/the-sidebar.vue'
 
 <style lang="scss">
 .dashboard-layout {
-  @include flex-box(row, center, null, 1rem);
+  @include flex-box(row, null, center, 1rem);
+  width: 73%;
 }
 </style>

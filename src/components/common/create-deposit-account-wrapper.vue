@@ -10,7 +10,7 @@ defineProps({
 </script>
 
 <template>
-  <div class="container">
+ 
     <section class="layout">
       <header class="layout__header">
         <h1 class="layout__title">{{ title }}</h1>
@@ -20,18 +20,11 @@ defineProps({
         <slot />
       </main>
     </section>
-  </div>
+  
 </template>
 
 <style lang="scss" scoped>
-.container {
-  display: flex;
-  justify-content: center;
-  // background-color: var(--secondary-50);
-  background-color: rgb(100, 185, 157);
-  height: 100vh;
-  padding-top: 2rem;
-}
+
 .layout {
   @include flex-box(column, null, null, 2.5rem);
   width: 87.5rem;
