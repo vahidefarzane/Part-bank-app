@@ -24,7 +24,7 @@ defineProps({
     <div class="loan-account__action-bar">
       <BaseButton class="loan-account__action-button secondary">
         {{ buttonText }}
-        <template #post-icon> <img src="" alt="" /></template>
+        <template #post-icon><slot name="icon-button"/></template>
       </BaseButton>
     </div>
   </div>
@@ -32,10 +32,11 @@ defineProps({
 
 <style lang="scss">
 .loan-account {
-  @include flex-box(column, space-between, center);
+  @include flex-box(column, space-between);
   background-color: var(--color-white);
   border-radius: 0.75rem;
   height: 16.25rem;
+  width: 21.125rem;
   padding: 1.5rem;
   &__info-bar {
     @include flex-box(row, space-between, center);
@@ -43,6 +44,13 @@ defineProps({
   &__title {
     color: var(--black-500);
     @include font-style(1.25rem, 500);
+  }
+  &__action-button{
+    width: 100%;
+    border-radius: 0.5rem;
+    padding: 0.5rem 1rem;
+    @include font-style(1rem,700)
+
   }
 }
 </style>

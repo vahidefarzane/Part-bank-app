@@ -36,7 +36,7 @@ const router = createRouter({
           },
           children: [
             {
-              path: 'home',
+              path: '/',
               name: 'Home',
               meta: {
                 title: 'داشبورد | صفحه اصلی',
@@ -77,5 +77,15 @@ const router = createRouter({
     }
   ]
 })
-
+// router.beforeEach((to, from, next) => {
+  // const token = localStorage.getItem('token');
+  // if (!token && to.name !== 'Login') {
+  //   next({ name: 'Login' });
+  // } else {
+  //   next();
+  // }
+  // if (to.meta.title) {
+  //   document.title = to.meta.title;
+  // }
+// });
 export default router

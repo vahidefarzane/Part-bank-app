@@ -5,7 +5,9 @@ import theSidebar from '@/components/view/the-sidebar.vue'
 <template>
   <main class="dashboard-layout">
     <theSidebar />
-    <RouterView />
+    <div class="dashboard-main">
+      <RouterView />
+    </div>
   </main>
 </template>
 
@@ -13,5 +15,9 @@ import theSidebar from '@/components/view/the-sidebar.vue'
 .dashboard-layout {
   @include flex-box(row, null, center, 1rem);
   width: 73%;
+}
+.dashboard-main {
+  width: 100%;
+  height: 100%;
 }
 </style>
