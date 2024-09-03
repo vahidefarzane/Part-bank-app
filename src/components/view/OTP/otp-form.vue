@@ -19,7 +19,7 @@ const props = defineProps({
   }
 })
 
-const timeInSecond = 5
+const timeInSeconds = 5
 const isLoading = ref(false)
 const isSubmitting = ref(false)
 const isOtpComplete = ref(false)
@@ -36,7 +36,7 @@ const handleClick = () => {
     }, 2000)
   } else {
     setTimeout(() => {
-      timerStore.startTimer(timeInSecond)
+      timerStore.startTimer(timeInSeconds)
       isLoading.value = false
       isSubmitting.value = false
     }, 3000)
@@ -62,7 +62,7 @@ const handleOtpChange = (otp) => {
         </div>
       </div>
       <div class="otp-form__action-section">
-        <appTimer :timeInSecond="timeInSecond" />
+        <appTimer :timeInSeconds="timeInSeconds" />
         <baseButton
           class="otp-form__submit-btn primary"
           :loading="isLoading"

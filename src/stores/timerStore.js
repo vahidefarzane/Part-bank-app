@@ -25,11 +25,9 @@ export const useTimerStore = defineStore('timer', {
         clearInterval(this.intervalId)
         this.intervalId = null
       }
-      this.isRunning = false
     },
     resumeTimer() {
       if (this.isRunning && this.timer > 0) {
-        this.isRunning = true
         this.intervalId = setInterval(() => {
           if (this.timer > 0) {
             this.timer--

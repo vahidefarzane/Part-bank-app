@@ -21,7 +21,7 @@ onUnmounted(() => {
   timerStore.stopTimer()
 })
 onMounted(() => {
-  if (timerStore.isRunning) {
+  if (!timerStore.isRunning) {
     timerStore.startTimer(props.timeInSeconds)
   } else {
     timerStore.resumeTimer()
