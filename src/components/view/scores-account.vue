@@ -22,6 +22,9 @@ import LoanAccountDetails from '@/components/view/Loan-account-details.vue'
 </template>
 
 <style lang="scss">
+.scores-account {
+  @include flex-box(column, space-between);
+}
 .scores-wrapper {
   @include flex-box(column, center, center);
 }

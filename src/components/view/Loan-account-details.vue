@@ -32,7 +32,7 @@ defineProps({
 
 <style lang="scss">
 .loan-account {
-  @include flex-box(column, space-between);
+  @include flex-box(column);
   background-color: var(--color-white);
   border-radius: 0.75rem;
   height: 16.25rem;
