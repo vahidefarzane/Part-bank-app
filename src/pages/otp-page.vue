@@ -9,5 +9,5 @@ import otpForm from '@/components/view/OTP/otp-form.vue'
 </template>
 
 <style lang="scss" scoped>
-@import '../styles/sass/pages/otp-page.scss';
+@import '@/styles/sass/pages/otp-page.scss';
 </style>

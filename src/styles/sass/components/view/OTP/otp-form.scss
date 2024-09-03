@@ -1,0 +1,45 @@
+.otp-wrapper {
+  @include flex-box(column, center, center);
+  width: 37.5rem;
+  height: 52.5rem;
+  padding: 17.0625rem 7.6875rem;
+  background-color: var(--color-white);
+  border-radius: 1.25rem;
+}
+.otp-form {
+  @include flex-box(column, null, center, 2.5rem);
+  &__input-section {
+    @include flex-box(column, null, center, 2rem);
+  }
+  &__action-section {
+    @include flex-box(column, null, center);
+  }
+  &__title {
+    color: var(--black-500);
+    @include font-style(1rem, 400);
+  }
+  &__input-group {
+    @include flex-box(column, center, flex-start, 0.5rem);
+    padding-bottom: 0.0625rem;
+  }
+  .input-group {
+    &__label {
+      color: var(--black-500);
+      @include font-style(1rem, 400);
+    }
+    &__inputs {
+      @include flex-box(row, center, center);
+    }
+    &__caption {
+      color: var(--secondary-200);
+      @include font-style(0.75rem, 400);
+      opacity: 0.6rem;
+    }
+  }
+  &__submit-btn {
+    width: 22.125rem;
+    border-radius: 0.5rem;
+    padding: 0.5rem 1rem;
+    height: 3rem;
+  }
+}

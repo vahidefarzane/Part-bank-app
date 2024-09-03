@@ -8,7 +8,7 @@ import router from '@/router'
 
 const timerStore = useTimerStore()
 
-defineProps({
+const props = defineProps({
   phoneNumber: {
     type: String,
     required: true
@@ -19,45 +19,33 @@ defineProps({
   }
 })
 
+const timeInSecond = 5
 const isLoading = ref(false)
-const isDisabled = computed(() => {
-  return timerStore.timer !== 0 && isSubmiting.value === false
-})
+const isSubmitting = ref(false)
 const isOtpComplete = ref(false)
-const isSubmiting = ref(false)
-const startTime = ref(false)
+const isDisabled = computed(() => {
+  return timerStore.timer !== 0 && isSubmitting.value === false
+})
 
 const handleClick = () => {
-  if (isSubmiting.value) {
-    isLoading.value = true
+  isLoading.value = true
+  if (isSubmitting.value) {
     setTimeout(() => {
       isLoading.value = false
       router.push('login')
     }, 2000)
+  } else {
+    setTimeout(() => {
+      timerStore.startTimer(timeInSecond)
+      isLoading.value = false
+      isSubmitting.value = false
+    }, 3000)
   }
-  isLoading.value = true
-  isSubmiting.value = false
-  setTimeout(() => {
-    timerStore.startTimer()
-    isLoading.value = false
-    startTime.value = true
-    isSubmiting.value = false
-  }, 3000)
 }
 
 const handleOtpChange = (otp) => {
-  isOtpComplete.value = otp.length === 6
-  if (isOtpComplete.value) {
-    isSubmiting.value = true
-    isDisabled.value = false
-  } else {
-    isSubmiting.value = false
-    isDisabled.value = true
-  }
-}
-const timer = computed(() => timerStore.timer)
-if (timer.value === 0) {
-  isDisabled.value = false
+  isOtpComplete.value = otp.length === +props.OTPCount
+  isSubmitting.value = isOtpComplete.value
 }
 </script>
 <template>
@@ -74,17 +62,17 @@ if (timer.value === 0) {
         </div>
       </div>
       <div class="otp-form__action-section">
-        <appTimer />
+        <appTimer :timeInSecond="timeInSecond" />
         <baseButton
           class="otp-form__submit-btn primary"
           :loading="isLoading"
           :disabled="isDisabled"
-          :submitting="isSubmiting"
+          :submitting="isSubmitting"
           @click="handleClick"
         >
           ارسال مجدد
           <template #submitting>ارسال</template>
-          <template #loading> {{ isSubmiting ? 'در حال ورود' : 'در حال ارسال کد ...' }} </template>
+          <template #loading> </template>
         </baseButton>
       </div>
     </form>
@@ -92,5 +80,5 @@ if (timer.value === 0) {
 </template>
 
 <style lang="scss" scoped>
-@import '@/styles/sass/components/view/otp-form.scss';
+@import '@/styles/sass/components/view/OTP/otp-form.scss';
 </style>

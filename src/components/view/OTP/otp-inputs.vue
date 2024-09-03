@@ -2,14 +2,14 @@
 import { ref, reactive, onMounted, watch } from 'vue'
 
 const props = defineProps({
-  numberOfdigits: {
+  numberOfDigits: {
     type: Number,
     default: 6
   }
 })
 const emit = defineEmits(['otpChange'])
 
-const otp = reactive(Array(props.numberOfdigits).fill(''))
+const otp = reactive(Array(props.numberOfDigits).fill(''))
 const inputRefs = ref([])
 
 const emitOtpChange = () => {
@@ -38,7 +38,7 @@ const inputHandler = (index) => {
     return
   }
 
-  if (/^[1-9]$/.test(otp[index])) {
+  if (/^[0-9]$/.test(otp[index])) {
     emitOtpChange()
     moveToFirstEmptyInput()
   } else {
@@ -55,16 +55,15 @@ const backspaceHandler = (index) => {
   emitOtpChange()
 }
 
-const pasteHandler = (event) => {
-  const pasteData = event.clipboardData.getData('text').slice(0, props.numberOfdigits)
+const pasteHandler = () => {
+  const pasteData = event.clipboardData.getData('text').slice(0, props.numberOfDigits)
   pasteData.split('').forEach((char, index) => {
-    if (/^[1-9]$/.test(char)) {
+    if (/^[0-9]$/.test(char)) {
       otp[index] = char
     }
   })
 
-  const nextIndex =
-    pasteData.length < props.numberOfdigits ? pasteData.length : props.numberOfdigits - 1
+  const nextIndex = Math.min(pasteData.length, props.numberOfDigits - 1)
   inputRefs.value[nextIndex].focus()
   moveToFirstEmptyInput()
   emitOtpChange()
@@ -86,7 +85,7 @@ watch(otp, () => {
       type="text"
       maxlength="1"
       inputmode="numeric"
-      pattern="[1-9]*"
+      pattern="[0-9]*"
       class="otp-input"
       :ref="(el) => (inputRefs[index] = el)"
       v-model="otp[index]"
@@ -98,5 +97,5 @@ watch(otp, () => {
 </template>
 
 <style lang="scss">
-@import '@/styles/sass/components/view/otp-input.scss';
+@import '@/styles/sass/components/view/OTP/otp-inputs.scss';
 </style>

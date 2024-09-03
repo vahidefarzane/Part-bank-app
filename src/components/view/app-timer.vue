@@ -2,20 +2,27 @@
 import { computed, onUnmounted, onMounted } from 'vue'
 import { useTimerStore } from '@/stores/timerStore'
 
+const props = defineProps({
+  timeInSeconds: {
+    type: Number,
+    default: 120
+  }
+})
+
 const timerStore = useTimerStore()
 
 const formattedTime = computed(() => {
   const minutes = Math.floor(timerStore.timer / 60)
   const seconds = timerStore.timer % 60
-  return `${minutes < 10 ? '0' : ''}${minutes}:${seconds < 10 ? '0' : ''}${seconds}`
+  return `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`
 })
 
 onUnmounted(() => {
   timerStore.stopTimer()
 })
 onMounted(() => {
-  if (timerStore.isRunning === false) {
-    timerStore.startTimer()
+  if (timerStore.isRunning) {
+    timerStore.startTimer(props.timeInSeconds)
   } else {
     timerStore.resumeTimer()
   }
@@ -28,19 +35,7 @@ onMounted(() => {
   </div>
 </template>
 
-<style lang="scss" scoped>
-.timer {
-  &-wrapper {
-    display: flex;
-    height: 3rem;
-    padding: 0.5rem 1rem;
-    justify-content: center;
-    align-items: center;
-    gap: 0.75rem;
-  }
-  color: var(--primary-500);
-  font-size: 0.875rem;
-  font-weight: 500;
-  line-height: 1.75rem;
-}
+<style lang="scss">
+@import '@/styles/sass/components/view/app-timer.scss'
+
 </style>
