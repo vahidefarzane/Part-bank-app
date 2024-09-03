@@ -1,11 +1,13 @@
 <script setup>
 import scoresAccount from '@/components/view/scores-account.vue';
 import installmentAccount from '@/components/view/installment-account.vue';
+import creditCard from '@/components/view/credit-card.vue';
 </script>
 
 <template>
   <main class="dashboard">
     <section class="dashboard__scores-section">
+      <creditCard/>
       <scoresAccount/>
       <installmentAccount/>
     </section>
