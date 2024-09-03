@@ -26,39 +26,11 @@ import LoanAccountDetails from './Loan-account-details.vue'
       </div>
     </template>
     <template #icon-button>
-        <img src="../../assets/icons/arrow-left.svg" alt="">
+        <img src="@/assets/icons/arrow-left.svg" alt="arrow-left">
     </template>
   </LoanAccountDetails>
 </template>
 
 <style lang="scss">
-.installment-account {
-  @include flex-box(column, space-between);
-}
-.installment-wrapper{
-  @include flex-box(column, flex-end,null,0.75rem);
-  flex: 1;
-  margin-bottom: 1.25rem;
-  
-
-}
-.installment {
-  &__datails {
-    @include flex-box(row, center, center);
-    color: var(--secondary-200);
-  }
-  &__price ,&__time{
-    @include flex-box(row,space-between,center)
-  }
-  &__price_title,
-  &__time_title {
-    color: var(--secondary-200);
-    @include font-style(0.875rem, 400);
-  }
-  &__price_content,
-  &__time_content {
-    color: var(--black-500);
-    @include font-style(0.875rem, 500);
-  }
-}
+@import '@/styles/sass/components/view/installment-account.scss'
 </style>

@@ -22,34 +22,5 @@ import LoanAccountDetails from '@/components/view/Loan-account-details.vue'
 </template>
 
 <style lang="scss">
-.scores-account {
-  @include flex-box(column, space-between);
-}
-.scores-wrapper {
-  @include flex-box(column, center, center);
-}
-.scores {
-  &__price {
-    @include flex-box(row, center, center, 0.25rem);
-    &_number {
-      color: var(--primary-500);
-      @include font-style(2.5rem, 700);
-    }
-    &_unit {
-      color: var(--secondary-200);
-      @include font-style(0.875rem, 400);
-    }
-  }
-  &__time {
-    @include flex-box(row, center, center, 0.25rem);
-    &_number {
-      color: var(--primary-500);
-      @include font-style(1.125rem, 700);
-    }
-    &_unit {
-      color: var(--secondary-200);
-      @include font-style(0.875rem, 400);
-    }
-  }
-}
+@import '../../styles/sass/components/view/scores-account.scss';
 </style>

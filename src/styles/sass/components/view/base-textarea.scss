@@ -1,0 +1,23 @@
+.textarea {
+  @include flex-box(column, center, flex-start, 0.25rem);
+  &__label {
+    padding: 0 0.5rem;
+  }
+  &__field {
+    width: 100%;
+    padding: 0.5rem;
+  }
+}
+.field_error {
+  border: 1px solid red !important;
+}
+.valid {
+  border: 1px solid green !important;
+}
+.error_message {
+  color: red;
+}
+.error-msg {
+  height: 1rem;
+  font-size: 14px;
+}
