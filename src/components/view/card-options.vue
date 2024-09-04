@@ -11,5 +11,6 @@
 <style lang="scss">
 .options-wrapper {
   @include flex-box(column, flex-start, center, 0.5rem);
+  background-color: var(--color-white);
 }
 </style>
