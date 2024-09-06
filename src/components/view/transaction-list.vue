@@ -1,5 +1,6 @@
 <script setup>
 import dashboardTable from './dashboard-table.vue'
+import baseSearch from '../common/base-search.vue';
 </script>
 <template>
   <main class="transaction">
@@ -8,7 +9,9 @@ import dashboardTable from './dashboard-table.vue'
         <span class="header__title_name">لیست تراکنش‌ها</span>
         <span class="header__title_unit"> ( ریال )</span>
       </div>
-      <div class="transaction__options">search</div>
+      <div class="transaction__options">
+        <baseSearch/>
+      </div>
     </section>
     <dashboardTable />
   </main>
