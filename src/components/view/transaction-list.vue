@@ -2,6 +2,18 @@
 import dashboardTable from './dashboard-table.vue'
 import baseSearch from '../common/base-search.vue'
 import baseSort from './base-sort.vue'
+import { ref } from 'vue'
+
+const searchQuery = ref('')
+const sortOrder = ref('none')
+
+function handleSearch(query) {    
+  searchQuery.value = query 
+}
+
+function handleSort(order) {    
+  sortOrder.value = order 
+}
 </script>
 <template>
   <main class="transaction">
@@ -11,11 +23,11 @@ import baseSort from './base-sort.vue'
         <span class="header__title_unit"> ( ریال )</span>
       </div>
       <div class="transaction__options">
-        <baseSort />
-        <baseSearch />
+        <baseSort @sort="handleSort" />
+        <baseSearch @search="handleSearch" />
       </div>
     </section>
-    <dashboardTable />
+    <dashboardTable :searchQuery="searchQuery" :sortOrder="sortOrder"   />
   </main>
 </template>
 
@@ -37,9 +49,8 @@ import baseSort from './base-sort.vue'
       }
     }
   }
-  &__options{
-    @include flex-box(row, center, center,0.75rem);
-
+  &__options {
+    @include flex-box(row, center, center, 0.75rem);
   }
 }
 </style>

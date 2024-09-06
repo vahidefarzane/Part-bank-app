@@ -1,7 +1,21 @@
-<script setup></script>
+<script setup>
+import { ref, defineEmits } from 'vue'
+
+const emit = defineEmits(['search'])
+const searchValue = ref('')
+const updateSearch = () => {    
+  emit('search', searchValue.value)
+}
+</script>
 <template>
   <div class="search">
-    <input type="text" class="search__input" placeholder="جستجو" />
+    <input
+      type="text"
+      class="search__input"
+      v-model="searchValue"
+      @input="updateSearch"
+      placeholder="جستجو"
+    />
     <img src="@/assets/icons/search.svg" class="search__icon" />
   </div>
 </template>
@@ -20,8 +34,8 @@
     color: transparent;
   }
   &__input {
-    &::placeholder{
-        color: var(--secondary-200);
+    &::placeholder {
+      color: var(--secondary-200);
     }
   }
   &__icon {

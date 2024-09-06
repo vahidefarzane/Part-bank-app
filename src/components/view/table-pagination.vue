@@ -3,90 +3,20 @@ import baseButton from '../common/base-button.vue'
 import { ref, computed, watch, onMounted } from 'vue'
 
 const props = defineProps({
+  filteredItems: {
+    type: Array,
+    default: () => []
+  },
   itemsPerPage: {
     type: Number,
     default: 5
   }
 })
-const transactions = [
-  {
-    id: 1,
-    type: 'withdraw',
-    dateTime: 'Sat Jul 27 2024 16:19:02 GMT+0330 (Iran Standard Time)',
-    Amount: '21,200,000'
-  },
-  {
-    id: 2,
-    type: 'deposit',
-    dateTime: 'Sat Jul 27 2024 16:19:02 GMT+0330 (Iran Standard Time)',
-    Amount: '21,200,000'
-  },
-  {
-    id: 3,
-    type: 'withdraw',
-    dateTime: 'Sat Jul 27 2024 16:19:02 GMT+0330 (Iran Standard Time)',
-    Amount: '21,200,000'
-  },
-  {
-    id: 4,
-    type: 'deposit',
-    dateTime: 'Sat Jul 27 2024 16:19:02 GMT+0330 (Iran Standard Time)',
-    Amount: '21,200,000'
-  },
-  {
-    id: 5,
-    type: 'withdraw',
-    dateTime: 'Sat Jul 27 2024 16:19:02 GMT+0330 (Iran Standard Time)',
-    Amount: '21,200,000'
-  },
-  {
-    id: 6,
-    type: 'deposit',
-    dateTime: 'Sat Jul 27 2024 16:19:02 GMT+0330 (Iran Standard Time)',
-    Amount: '21,200,000'
-  },
-  {
-    id: 7,
-    type: 'withdraw',
-    dateTime: 'Sat Jul 27 2024 16:19:02 GMT+0330 (Iran Standard Time)',
-    Amount: '21,200,000'
-  },
-  {
-    id: 8,
-    type: 'deposit',
-    dateTime: 'Sat Jul 27 2024 16:19:02 GMT+0330 (Iran Standard Time)',
-    Amount: '21,200,000'
-  },
-  {
-    id: 9,
-    type: 'withdraw',
-    dateTime: 'Sat Jul 27 2024 16:19:02 GMT+0330 (Iran Standard Time)',
-    Amount: '21,200,000'
-  },
-  {
-    id: 10,
-    type: 'deposit',
-    dateTime: 'Sat Jul 27 2024 16:19:02 GMT+0330 (Iran Standard Time)',
-    Amount: '21,200,000'
-  },
-  {
-    id: 11,
-    type: 'withdraw',
-    dateTime: 'Sat Jul 27 2024 16:19:02 GMT+0330 (Iran Standard Time)',
-    Amount: '21,200,000'
-  },
-  {
-    id: 11,
-    type: 'withdraw',
-    dateTime: 'Sat Jul 27 2024 16:19:02 GMT+0330 (Iran Standard Time)',
-    Amount: '21,200,000'
-  }
-]
 
 const currentPage = ref(1)
 
 const totalPages = computed(() => {
-  return Math.ceil(transactions.length / props.itemsPerPage)
+  return Math.ceil(props.filteredItems.length / props.itemsPerPage)
 })
 const endIndex = computed(() => {
   return currentPage.value * props.itemsPerPage
@@ -96,7 +26,7 @@ const startIndex = computed(() => {
 })
 
 const dataPerPage = computed(() => {
-  return transactions.slice(startIndex.value, endIndex.value)
+  return props.filteredItems.slice(startIndex.value, endIndex.value)
 })
 
 const visiblePages = computed(() => {
