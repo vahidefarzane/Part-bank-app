@@ -56,8 +56,8 @@ const showOptionCrad = () => {
 
 <style lang="scss">
 .credit-card {
-  width: 456px;
-  height: 260px;
+  width: 28.5rem;
+  height: 16.25rem;
   border-radius: 12px;
   background: linear-gradient(
     112deg,
@@ -69,8 +69,8 @@ const showOptionCrad = () => {
     background: url(@/assets/images/pattern-card.png);
   }
   &__frame {
-    width: 456px;
-    height: 260px;
+    width: 28.5rem;
+    height: 16.25rem;
     @include flex-box(column, space-between);
     border-radius: 12px;
     padding: 2.25rem 1.5rem 2rem 2rem;

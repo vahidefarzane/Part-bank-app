@@ -1,18 +1,18 @@
 <script setup>
 import dashboardTable from './dashboard-table.vue'
 import baseSearch from '../common/base-search.vue'
-import baseDropdown from './base-dropdown.vue';
+import baseDropdown from './base-dropdown.vue'
 import { ref } from 'vue'
 
 const searchQuery = ref('')
 const sortOrder = ref('none')
 
-function handleSearch(query) {    
-  searchQuery.value = query 
+function handleSearch(query) {
+  searchQuery.value = query
 }
 
-function handleSort(order) {    
-  sortOrder.value = order 
+function handleSort(order) {
+  sortOrder.value = order
 }
 </script>
 <template>
@@ -23,17 +23,18 @@ function handleSort(order) {
         <span class="header__title_unit"> ( ریال )</span>
       </div>
       <div class="transaction__options">
-        <baseDropdown @sort="handleSort"/>
+        <baseDropdown @sort="handleSort" />
         <baseSearch @search="handleSearch" />
       </div>
     </section>
-    <dashboardTable :searchQuery="searchQuery" :sortOrder="sortOrder"   />
+    <dashboardTable :searchQuery="searchQuery" :sortOrder="sortOrder" />
   </main>
 </template>
 
 <style lang="scss">
 .transaction {
   @include flex-box(column, null, null, 1.5rem);
+ 
   &__header {
     @include flex-box(row, space-between, center);
   }
