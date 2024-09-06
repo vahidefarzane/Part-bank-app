@@ -1,6 +1,7 @@
 <script setup>
 import { ref, computed, watch } from 'vue'
 import tablePagination from './table-pagination.vue'
+import shamsiDateConverter from '@/utils/shamsiDateConverter';
 
 const paginatedTransactions = ref([])
 const allTransactions = ref([
@@ -135,7 +136,7 @@ const handlePageChanged = (newPaginatedTransactions) => {
             <td class="table__cell table__cell_body">
               {{ trans.type === 'deposit' ? 'واریز' : 'برداشت' }}
             </td>
-            <td class="table__cell table__cell_body">{{ trans.dateTime }}</td>
+            <td class="table__cell table__cell_body">{{ shamsiDateConverter(trans.dateTime) }}</td>
             <td class="table__cell table__cell_body">{{ trans.Amount }}</td>
           </tr>
         </tbody>
