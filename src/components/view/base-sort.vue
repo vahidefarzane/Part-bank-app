@@ -1,4 +1,4 @@
-<script>
+<script setup>
 import { defineEmits } from 'vue'
 
 const emit = defineEmits(['sort'])
@@ -12,7 +12,7 @@ const handleSortChange = (event) => {
       <img src="@/assets/icons/sort.svg" alt="Group" class="sort__title_icon" />
       <label for="ordered" class="sort__title_name">مرتب سازی :</label>
     </div>
-    <select name="date" id="ordered" class="sort__select" @change="handleSortChange">
+    <select @change="handleSortChange" name="date" id="ordered" class="sort__select">
       <option class="sort__option" value="all">همه</option>
       <option class="sort__option" value="asc">صعودی</option>
       <option class="sort__option" value="desc">نزولی</option>

@@ -23,7 +23,7 @@ function handleSort(order) {
         <span class="header__title_unit"> ( ریال )</span>
       </div>
       <div class="transaction__options">
-        <baseSort @sort="handleSort" />
+        <baseSort @sort="handleSort"/>
         <baseSearch @search="handleSearch" />
       </div>
     </section>

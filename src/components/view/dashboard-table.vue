@@ -55,25 +55,19 @@ const allTransactions = ref([
   {
     id: 9,
     type: 'withdraw',
-    dateTime: 'Sat Jul 27 2024 16:19:02 GMT+0330 (Iran Standard Time)',
+    dateTime: 'Sat Jul 29 2024 16:19:02 GMT+0330 (Iran Standard Time)',
     Amount: '21,200,000'
   },
   {
     id: 10,
     type: 'deposit',
-    dateTime: 'Sat Jul 27 2024 16:19:02 GMT+0330 (Iran Standard Time)',
+    dateTime: 'Sat Jul 24 2024 16:19:02 GMT+0330 (Iran Standard Time)',
     Amount: '21,200,000'
   },
   {
     id: 11,
     type: 'withdraw',
-    dateTime: 'Sat Jul 27 2024 16:19:02 GMT+0330 (Iran Standard Time)',
-    Amount: '21,200,000'
-  },
-  {
-    id: 11,
-    type: 'withdraw',
-    dateTime: 'Sat Jul 27 2024 16:19:02 GMT+0330 (Iran Standard Time)',
+    dateTime: 'Sat Jul 25 2024 16:19:02 GMT+0330 (Iran Standard Time)',
     Amount: '21,200,000'
   }
 ])
@@ -82,16 +76,23 @@ const props = defineProps({
   sortOrder: String
 })
 
+const farsiToEnglish = {
+  deposit: 'واریز',
+  withdraw: 'برداشت'
+}
+
 const filteredAndSortedTransactions = computed(() => {
   let filtered = allTransactions.value
 
   if (props.searchQuery) {
-    filtered = filtered.filter(
-      (trans) =>
-        trans.type.toLowerCase().includes(props.searchQuery.toLowerCase()) ||
+    filtered = filtered.filter((trans) => {
+      const transType = farsiToEnglish[trans.type] || trans.type
+      return (
+        transType.includes(props.searchQuery) ||
         trans.dateTime.includes(props.searchQuery) ||
         trans.Amount.toString().includes(props.searchQuery)
-    )
+      )
+    })
   }
 
   if (props.sortOrder === 'asc') {
@@ -140,7 +141,10 @@ const handlePageChanged = (newPaginatedTransactions) => {
         </tbody>
       </table>
     </section>
-    <tablePagination :filteredItems="filteredAndSortedTransactions" @pageChanged="handlePageChanged" />
+    <tablePagination
+      :filteredItems="filteredAndSortedTransactions"
+      @pageChanged="handlePageChanged"
+    />
   </div>
 </template>
 
