@@ -7,8 +7,10 @@ const emit = defineEmits(['sort'])
 
 const options = [
   { value: 'all', label: 'همه' },
-  { value: 'asc', label: 'صعودی' },
-  { value: 'desc', label: 'نزولی' }
+  { value: 'ascDate', label: 'تاریخ - صعودی' },
+  { value: 'descDate', label: 'تاریخ - نزولی' },
+  { value: 'ascPrice', label: 'مبلغ تراکنش - صعودی' },
+  { value: 'descPrice', label: 'مبلغ تراکنش - نزولی' }
 ]
 
 const selectedValue = ref('all')

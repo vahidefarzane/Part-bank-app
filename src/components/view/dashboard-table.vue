@@ -11,7 +11,7 @@ const allTransactions = ref([
     id: 1,
     type: 'withdraw',
     dateTime: 'Sat Jul 27 2024 16:19:02 GMT+0330 (Iran Standard Time)',
-    Amount: '21,200,000'
+    Amount: '22,200,000'
   },
   {
     id: 2,
@@ -23,7 +23,7 @@ const allTransactions = ref([
     id: 3,
     type: 'withdraw',
     dateTime: 'Sat Jul 27 2024 16:19:02 GMT+0330 (Iran Standard Time)',
-    Amount: '21,200,000'
+    Amount: '25,200,000'
   },
   {
     id: 4,
@@ -47,7 +47,7 @@ const allTransactions = ref([
     id: 7,
     type: 'withdraw',
     dateTime: 'Sat Jul 27 2024 16:19:02 GMT+0330 (Iran Standard Time)',
-    Amount: '21,200,000'
+    Amount: '21,400,000'
   },
   {
     id: 8,
@@ -59,7 +59,7 @@ const allTransactions = ref([
     id: 9,
     type: 'withdraw',
     dateTime: 'Sat Jul 29 2024 16:19:02 GMT+0330 (Iran Standard Time)',
-    Amount: '21,200,000'
+    Amount: '21,200,400'
   },
   {
     id: 10,
@@ -71,7 +71,7 @@ const allTransactions = ref([
     id: 11,
     type: 'withdraw',
     dateTime: 'Sat Jul 25 2024 16:19:02 GMT+0330 (Iran Standard Time)',
-    Amount: '21,200,000'
+    Amount: '40,200,000'
   }
 ])
 const props = defineProps({
@@ -98,10 +98,22 @@ const filteredAndSortedTransactions = computed(() => {
     })
   }
 
-  if (props.sortOrder === 'asc') {
-    filtered.sort((a, b) => a.dateTime.localeCompare(b.dateTime))
-  } else if (props.sortOrder === 'desc') {
-    filtered.sort((a, b) => b.dateTime.localeCompare(a.dateTime))
+  switch (props.sortOrder) {
+    case 'ascDate':
+      filtered.sort((a, b) => a.dateTime.localeCompare(b.dateTime))
+      break
+    case 'descDate':
+      filtered.sort((a, b) => b.dateTime.localeCompare(a.dateTime))
+      break
+    case 'ascPrice':
+      filtered.sort((a, b) => a.Amount.localeCompare(b.Amount))
+      break
+    case 'descPrice':
+      filtered.sort((a, b) => b.Amount.localeCompare(a.Amount))
+      break
+    default:
+      filtered
+      break
   }
 
   return filtered
