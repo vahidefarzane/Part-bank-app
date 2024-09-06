@@ -1,6 +1,7 @@
 <script setup>
 import dashboardTable from './dashboard-table.vue'
-import baseSearch from '../common/base-search.vue';
+import baseSearch from '../common/base-search.vue'
+import baseSort from './base-sort.vue'
 </script>
 <template>
   <main class="transaction">
@@ -10,7 +11,8 @@ import baseSearch from '../common/base-search.vue';
         <span class="header__title_unit"> ( ریال )</span>
       </div>
       <div class="transaction__options">
-        <baseSearch/>
+        <baseSort />
+        <baseSearch />
       </div>
     </section>
     <dashboardTable />
@@ -34,6 +36,10 @@ import baseSearch from '../common/base-search.vue';
         color: var(--secondary-200);
       }
     }
+  }
+  &__options{
+    @include flex-box(row, center, center,0.75rem);
+
   }
 }
 </style>
