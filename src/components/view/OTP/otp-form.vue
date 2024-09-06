@@ -3,7 +3,7 @@ import appTimer from '../app-timer.vue'
 import { computed, ref } from 'vue'
 import baseButton from '@/components/common/base-button.vue'
 import otpInputs from './otp-inputs.vue'
-import { useTimerStore } from '@/stores/timerStore'
+import { useTimerStore } from '@/stores/useTimerStore'
 import router from '@/router'
 
 const timerStore = useTimerStore()

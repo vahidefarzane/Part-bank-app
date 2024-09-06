@@ -1,6 +1,6 @@
 <script setup>
 import { computed, onUnmounted, onMounted } from 'vue'
-import { useTimerStore } from '@/stores/timerStore'
+import { useTimerStore } from '@/stores/useTimerStore'
 
 const props = defineProps({
   timeInSeconds: {

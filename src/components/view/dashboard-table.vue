@@ -5,7 +5,10 @@ import shamsiDateConverter from '@/utils/shamsiDateConverter'
 import depositIcon from '../../assets/icons/deposit.svg'
 import withdrawIcon from '../../assets/icons/withdraw.svg'
 
+
+
 const paginatedTransactions = ref([])
+
 const allTransactions = ref([
   {
     id: 1,
