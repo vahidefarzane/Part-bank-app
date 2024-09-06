@@ -1,7 +1,9 @@
 <script setup>
 import { ref, computed, watch } from 'vue'
 import tablePagination from './table-pagination.vue'
-import shamsiDateConverter from '@/utils/shamsiDateConverter';
+import shamsiDateConverter from '@/utils/shamsiDateConverter'
+import depositIcon from '../../assets/icons/deposit.svg'
+import withdrawIcon from '../../assets/icons/withdraw.svg'
 
 const paginatedTransactions = ref([])
 const allTransactions = ref([
@@ -133,8 +135,9 @@ const handlePageChanged = (newPaginatedTransactions) => {
             v-for="trans in paginatedTransactions"
             :key="trans.id"
           >
-            <td class="table__cell table__cell_body">
-              {{ trans.type === 'deposit' ? 'واریز' : 'برداشت' }}
+            <td class="table__cell table__cell_body table__cell_type">
+              <img :src="trans.type === 'deposit' ? depositIcon : withdrawIcon" alt="" />
+              <span> {{ trans.type === 'deposit' ? 'واریز' : 'برداشت' }}</span>
             </td>
             <td class="table__cell table__cell_body">{{ shamsiDateConverter(trans.dateTime) }}</td>
             <td class="table__cell table__cell_body">{{ trans.Amount }}</td>
@@ -169,10 +172,14 @@ const handlePageChanged = (newPaginatedTransactions) => {
     &__body {
       .table__row {
         height: 3.8125rem;
-
         &:nth-child(even) {
           background-color: var(--secondary-300);
         }
+      }
+      .table__cell_type {
+        @include flex-box(row, center, center);
+        width: 100%;
+        height: 3.8125rem;
       }
     }
 

@@ -1,7 +1,7 @@
 <script setup>
 import dashboardTable from './dashboard-table.vue'
 import baseSearch from '../common/base-search.vue'
-import baseSort from './base-sort.vue'
+import baseDropdown from './base-dropdown.vue';
 import { ref } from 'vue'
 
 const searchQuery = ref('')
@@ -23,7 +23,7 @@ function handleSort(order) {
         <span class="header__title_unit"> ( ریال )</span>
       </div>
       <div class="transaction__options">
-        <baseSort @sort="handleSort"/>
+        <baseDropdown @sort="handleSort"/>
         <baseSearch @search="handleSearch" />
       </div>
     </section>
